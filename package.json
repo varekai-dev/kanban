@@ -6,6 +6,19 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@vkontakte/icons": "^1.18.2",
+    "@vkontakte/vk-bridge": "^2.4.0",
+    "@vkontakte/vk-miniapps-deploy": "0.0.17",
+    "@vkontakte/vkjs": "^0.20.0",
+    "@vkontakte/vkui": "^4.0.4",
+    "babel-eslint": "^10.1.0",
+    "chalk": "^2.4.2",
+    "core-js": "^3.6.4",
+    "eruda": "^2.2.0",
+    "eruda-code": "^2.0.0",
+    "eruda-dom": "^2.0.0",
+    "node-sass": "^5.0.0",
+    "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.2",
@@ -16,6 +29,14 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "react-hot-loader": "^4.9.0",
+    "react-scripts": "^4.0.1"
   },
   "eslintConfig": {
     "extends": [

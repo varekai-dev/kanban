@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import { View, Panel, Button } from '@vkontakte/vkui'
+import '@vkontakte/vkui/dist/vkui.css'
+import Desks from './components/Desks'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const panel = {
+	desks: 'desks',
+	columns: 'columns'
 }
 
-export default App;
+function App() {
+	const [activePanel, setActivePanel] = useState(panel.desks)
+	return (
+		<View activePanel={activePanel}>
+			<Panel id={panel.desks}>
+				<Desks onChangePanel={() => setActivePanel(panel.columns)} />
+			</Panel>
+
+			<Panel id={panel.columns}>
+				<div>Column Panel</div>
+				<Button onClick={() => setActivePanel(panel.desks)}>Go to desks</Button>
+			</Panel>
+		</View>
+	)
+}
+
+export default App
