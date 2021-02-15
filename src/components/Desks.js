@@ -1,26 +1,33 @@
-import { PanelHeaderSimple } from '@vkontakte/vkui'
-import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
-import DeskList from './DeskList'
-import DeskCreate from './DeskCreate'
+import { PanelHeaderSimple } from "@vkontakte/vkui";
+import React, { Fragment, useState } from "react";
+import PropTypes from "prop-types";
+import DeskList from "./DeskList";
+import DeskCreate from "./DeskCreate";
 
 function Desks({ onChangePanel }) {
-	return (
-		<Fragment>
-			<PanelHeaderSimple>My desks</PanelHeaderSimple>
-			<DeskCreate />
-			<DeskList />
+  const [desks, setDesks] = useState([]);
+  const addDesk = (desk) => setDesks([...desks, desk]);
+  const removeDesk = (id) => {
+    const result = desks.filter((item) => item.id !== id);
+    setDesks(result);
+  };
 
-			{/* <div>Desk Panel</div>
+  return (
+    <Fragment>
+      <PanelHeaderSimple>My desks</PanelHeaderSimple>
+      <DeskCreate onCreate={addDesk} />
+      <DeskList onLoadDesks={setDesks} desks={desks} onDelete={removeDesk} />
+
+      {/* <div>Desk Panel</div>
 			<Button size="l" onClick={onChangePanel}>
 				Go to columns
 			</Button> */}
-		</Fragment>
-	)
+    </Fragment>
+  );
 }
 
 Desks.propTypes = {
-	onChangePanel: PropTypes.func.isRequired
-}
+  onChangePanel: PropTypes.func.isRequired,
+};
 
-export default Desks
+export default Desks;
