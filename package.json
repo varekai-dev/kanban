@@ -1,48 +1,40 @@
 {
-  "name": "kanban-react",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@vkontakte/icons": "^1.18.2",
-    "@vkontakte/vk-bridge": "^2.4.0",
-    "@vkontakte/vk-miniapps-deploy": "0.0.17",
-    "@vkontakte/vkjs": "^0.20.0",
-    "@vkontakte/vkui": "^4.0.4",
-    "babel-eslint": "^10.1.0",
-    "chalk": "^2.4.2",
-    "core-js": "^3.6.4",
-    "eruda": "^2.2.0",
-    "eruda-code": "^2.0.0",
-    "eruda-dom": "^2.0.0",
-    "node-sass": "^5.0.0",
-    "prop-types": "^15.7.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "4.0.2",
-    "web-vitals": "^1.0.1"
-  },
+  "name": "kanban",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "cross-env PORT=10888 react-scripts start",
+    "build": "react-scripts build"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "cross-env": "^5.2.0",
-    "react-hot-loader": "^4.9.0",
-    "react-scripts": "^4.0.1"
+    "@welldone-software/why-did-you-render": "^4.0.6",
+    "cross-env": "^5.2.1",
+    "react-hot-loader": "^4.12.19",
+    "react-scripts": "^3.4.0"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "dependencies": {
+    "@vkontakte/icons": "^1.16.3",
+    "@vkontakte/vk-bridge": "^2.1.6",
+    "@vkontakte/vkui": "^3.2.0",
+    "babel-eslint": "^10.0.3",
+    "chalk": "^2.4.2",
+    "core-js": "^3.6.4",
+    "firebase": "7.9.0",
+    "marked": "^0.8.2",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.2.0",
+    "react-router5": "^8.0.0",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
+    "router5": "^8.0.0",
+    "router5-plugin-browser": "^8.0.0"
   },
   "browserslist": {
     "production": [
