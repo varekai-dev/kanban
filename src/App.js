@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { View, Panel, Button } from '@vkontakte/vkui'
 import '@vkontakte/vkui/dist/vkui.css'
 import Desks from './components/Desks'
+import Columns from './components/Columns'
 
 const panel = {
 	desks: 'desks',
@@ -9,7 +10,7 @@ const panel = {
 }
 
 function App() {
-	const [activePanel, setActivePanel] = useState(panel.desks)
+	const [activePanel, setActivePanel] = useState(panel.columns)
 	return (
 		<View activePanel={activePanel}>
 			<Panel id={panel.desks}>
@@ -17,8 +18,7 @@ function App() {
 			</Panel>
 
 			<Panel id={panel.columns}>
-				<div>Column Panel</div>
-				<Button onClick={() => setActivePanel(panel.desks)}>Go to desks</Button>
+				<Columns />
 			</Panel>
 		</View>
 	)
