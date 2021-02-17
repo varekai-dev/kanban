@@ -9,6 +9,11 @@ function Columns() {
 	const [columns, setColumns] = useState([])
 	const addColumn = (column) => setColumns([...columns, column])
 
+	const removeColumn = (id) => {
+		const result = columns.filter((item) => item.id !== id)
+		setColumns(result)
+	}
+
 	useEffect(() => {
 		db.collection('columns')
 			.get()
@@ -26,7 +31,6 @@ function Columns() {
 				setColumns(columns)
 			})
 	}, [])
-	console.log(columns)
 	return (
 		<Fragment>
 			<PanelHeaderSimple>Desk</PanelHeaderSimple>
@@ -34,11 +38,15 @@ function Columns() {
 			{columns.length ? (
 				<Gallery className="Columns__list" slideWidth="90%" align="center">
 					{columns.map(({ id, name }) => (
-						<Column key={id}>{name}</Column>
+						<Column key={id} id={id} onDelete={removeColumn}>
+							{name}
+						</Column>
 					))}
 					<ColumnCreate onCreate={addColumn} />
 				</Gallery>
-			) : null}
+			) : (
+				<ColumnCreate onCreate={addColumn} />
+			)}
 
 			<Div></Div>
 		</Fragment>
