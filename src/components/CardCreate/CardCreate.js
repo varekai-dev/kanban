@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import db from "../../firebase";
+import db from "../../models/firebase";
 import CreateForm from "../CreateForm/CreateForm";
 
 function CardCreate({ onCreate, columnId }) {

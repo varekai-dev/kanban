@@ -21,6 +21,15 @@ function Desks({ onChangePanel, setDesks, addDesk, removeDesk, desks }) {
 
 Desks.propTypes = {
   onChangePanel: PropTypes.func.isRequired,
+  setDesks: PropTypes.func.isRequired,
+  addDesk: PropTypes.func.isRequired,
+  removeDesk: PropTypes.func.isRequired,
+  desks: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default Desks;

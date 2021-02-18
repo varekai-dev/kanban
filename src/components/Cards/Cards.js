@@ -1,7 +1,7 @@
 import { CardGrid } from "@vkontakte/vkui";
 import React, { useState, useEffect } from "react";
 import ColumnCard from "../ColumnCard/ColumnCard";
-import db from "../../firebase";
+import db from "../../models/firebase";
 import CardCreate from "../CardCreate/CardCreate";
 import PropTypes from "prop-types";
 

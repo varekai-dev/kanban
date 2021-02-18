@@ -4,7 +4,7 @@ import "./Column.css";
 import PropTypes from "prop-types";
 import Cards from "../Cards/Cards";
 
-import db from "../../firebase";
+import db from "../../models/firebase";
 
 function Column({ children, onDelete, id }) {
   const deleteColumn = () => {

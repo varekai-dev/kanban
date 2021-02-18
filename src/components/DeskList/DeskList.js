@@ -2,7 +2,7 @@ import { CardGrid } from "@vkontakte/vkui";
 import React, { useEffect } from "react";
 import DeskItem from "../DeskItem/DeskItem";
 import PropTypes from "prop-types";
-import db from "../../firebase";
+import db from "../../models/firebase";
 
 function DeskList({ desks, onDelete, onLoadDesks, onDeskClick }) {
   useEffect(() => {

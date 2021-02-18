@@ -7,7 +7,7 @@ import {
 } from "@vkontakte/vkui";
 import "./Columns.css";
 import Column from "../../components/Column/Column";
-import db from "../../firebase";
+import db from "../../models/firebase";
 import ColumnCreate from "../../components/ColumnCreate/ColumnCreate";
 import PropTypes from "prop-types";
 
