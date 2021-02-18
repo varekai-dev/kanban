@@ -1,25 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import db from '../firebase'
-import CreateForm from './CreateForm'
-import './Columns.css'
-import { Div } from '@vkontakte/vkui'
+import db from '../../firebase'
+import CreateForm from '../CreateForm/CreateForm'
 
 function DeskCreate({ onCreate }) {
-	const createColumn = (name) => {
+	const createDesk = (name) => {
 		return db
-			.collection('columns')
+			.collection('desks')
 			.add({ name })
 			.then((docRef) => docRef.get())
 			.then((doc) => onCreate({ id: doc.id, ...doc.data() }))
 			.catch(console.error)
 	}
 
-	return (
-		<Div className="Column">
-			<CreateForm onSubmit={createColumn} placeholder="Enter column name" actionTitle="Create column" />
-		</Div>
-	)
+	return <CreateForm onSubmit={createDesk} placeholder="Enter desk name" actionTitle="Create desk" />
 }
 
 DeskCreate.propTypes = {

@@ -1,8 +1,8 @@
 import { PanelHeaderSimple } from "@vkontakte/vkui";
 import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
-import DeskList from "./DeskList";
-import DeskCreate from "./DeskCreate";
+import DeskList from "../../components/DeskList/DeskList";
+import DeskCreate from "../../components/DeskCreate/DeskCreate";
 
 function Desks({ onChangePanel }) {
   const [desks, setDesks] = useState([]);
