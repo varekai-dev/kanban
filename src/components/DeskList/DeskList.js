@@ -2,22 +2,12 @@ import { CardGrid } from "@vkontakte/vkui";
 import React, { useEffect } from "react";
 import DeskItem from "../DeskItem/DeskItem";
 import PropTypes from "prop-types";
-import db from "../../models/firebase";
+
+import { getDesks } from "../../actions";
 
 function DeskList({ desks, onDelete, onLoadDesks, onDeskClick }) {
   useEffect(() => {
-    db.collection("desks")
-      .get()
-      .then((querySnapshot) => {
-        const desks = [];
-        querySnapshot.forEach((doc) => {
-          desks.push({
-            id: doc.id,
-            name: doc.data().name,
-          });
-        });
-        onLoadDesks(desks);
-      });
+    getDesks().then(onLoadDesks);
     // eslint-disable-next-line
   }, []);
   if (!desks.length) {

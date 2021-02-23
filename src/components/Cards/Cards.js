@@ -4,6 +4,7 @@ import ColumnCard from "../ColumnCard/ColumnCard";
 import db from "../../models/firebase";
 import CardCreate from "../CardCreate/CardCreate";
 import PropTypes from "prop-types";
+import { getCards } from "../../actions";
 
 function Cards({ columnId }) {
   const [cards, setCards] = useState([]);
@@ -14,22 +15,7 @@ function Cards({ columnId }) {
     setCards(result);
   };
   useEffect(() => {
-    db.collection("cards")
-      .where("columnId", "==", columnId)
-      .get()
-      .then((querySnapshot) => {
-        const cards = [];
-        querySnapshot.forEach((doc) => {
-          const { columnId, name } = doc.data();
-
-          cards.push({
-            id: doc.id,
-            columnId,
-            name,
-          });
-        });
-        setCards(cards);
-      });
+    getCards(columnId).then(setCards);
     // eslint-disable-next-line
   }, []);
   return (

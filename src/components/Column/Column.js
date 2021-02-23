@@ -3,18 +3,17 @@ import { Div, Card, Header, Button } from "@vkontakte/vkui";
 import "./Column.css";
 import PropTypes from "prop-types";
 import Cards from "../Cards/Cards";
-
-import db from "../../models/firebase";
+import { deleteColumn } from "../../actions";
 
 function Column({ children, onDelete, id }) {
-  const deleteColumn = () => {
-    db.collection("columns").doc(id).delete().then(onDelete(id));
+  const deleteItem = () => {
+    deleteColumn(id).then(onDelete(id)).catch(console.error);
   };
   return (
     <Div className="Column">
       <div className="Column__header">
         <Header>{children}</Header>
-        <Button mode="destructive" onClick={deleteColumn}>
+        <Button mode="destructive" onClick={deleteItem}>
           Delete
         </Button>
       </div>

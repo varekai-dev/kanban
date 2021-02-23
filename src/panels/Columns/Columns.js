@@ -10,6 +10,7 @@ import Column from "../../components/Column/Column";
 import db from "../../models/firebase";
 import ColumnCreate from "../../components/ColumnCreate/ColumnCreate";
 import PropTypes from "prop-types";
+import { getColumns } from "../../actions";
 
 function Columns({
   goBack,
@@ -23,22 +24,9 @@ function Columns({
     if (!desk) {
       return;
     }
-    db.collection("columns")
-      .where("deskId", "==", desk.id)
-      .get()
-      .then((querySnapshot) => {
-        const columns = [];
-        querySnapshot.forEach((doc) => {
-          const { deskId, name } = doc.data();
 
-          columns.push({
-            id: doc.id,
-            deskId,
-            name,
-          });
-        });
-        setColumns(columns);
-      });
+    getColumns(desk.id).then(setColumns);
+
     // eslint-disable-next-line
   }, []);
   return (

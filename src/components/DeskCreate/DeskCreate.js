@@ -1,21 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
-import db from "../../models/firebase";
 import CreateForm from "../CreateForm/CreateForm";
 
+import { createDesk } from "../../actions";
+
 function DeskCreate({ onCreate }) {
-  const createDesk = (name) => {
-    return db
-      .collection("desks")
-      .add({ name })
-      .then((docRef) => docRef.get())
+  const deskCreate = (name) => {
+    return createDesk(name)
       .then((doc) => onCreate({ id: doc.id, ...doc.data() }))
       .catch(console.error);
   };
 
   return (
     <CreateForm
-      onSubmit={createDesk}
+      onSubmit={deskCreate}
       placeholder="Enter desk name"
       actionTitle="Create desk"
     />
