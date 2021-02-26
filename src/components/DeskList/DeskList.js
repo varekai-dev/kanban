@@ -1,13 +1,16 @@
 import { CardGrid } from "@vkontakte/vkui";
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import DeskItem from "../DeskItem/DeskItem";
 import PropTypes from "prop-types";
-
+import Context from "../App/context";
 import { getDesks } from "../../actions";
 
-function DeskList({ desks, onDelete, onLoadDesks, onDeskClick }) {
+function DeskList() {
+  const { onChangePanel, setDesks, desks } = useContext(Context);
+  const state = useContext(Context);
+  console.log(state);
   useEffect(() => {
-    getDesks().then(onLoadDesks);
+    getDesks().then(setDesks);
     // eslint-disable-next-line
   }, []);
   if (!desks.length) {
@@ -16,12 +19,7 @@ function DeskList({ desks, onDelete, onLoadDesks, onDeskClick }) {
   return (
     <CardGrid>
       {desks.map(({ id, name }) => (
-        <DeskItem
-          onClick={() => onDeskClick(id)}
-          onDelete={onDelete}
-          key={id}
-          id={id}
-        >
+        <DeskItem onClick={() => onChangePanel(id)} key={id} id={id}>
           {" "}
           {name}
         </DeskItem>
@@ -37,9 +35,6 @@ DeskList.propTypes = {
       name: PropTypes.string.isRequired,
     })
   ),
-  onDelete: PropTypes.func.isRequired,
-  onLoadDesks: PropTypes.func.isRequired,
-  onDeskClick: PropTypes.func.isRequired,
 };
 
 export default DeskList;

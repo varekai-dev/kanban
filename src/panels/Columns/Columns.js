@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useContext } from "react";
 import {
   Div,
   Gallery,
@@ -7,61 +7,44 @@ import {
 } from "@vkontakte/vkui";
 import "./Columns.css";
 import Column from "../../components/Column/Column";
-import db from "../../models/firebase";
 import ColumnCreate from "../../components/ColumnCreate/ColumnCreate";
 import PropTypes from "prop-types";
 import { getColumns } from "../../actions";
+import Context from "../../components/App/context";
 
-function Columns({
-  goBack,
-  setColumns,
-  columns,
-  removeColumn,
-  addColumn,
-  desk,
-}) {
+function Columns() {
+  const { goToDesks, setColumns, columns, activeDesk } = useContext(Context);
   useEffect(() => {
-    if (!desk) {
+    if (!activeDesk) {
       return;
     }
 
-    getColumns(desk.id).then(setColumns);
+    getColumns(activeDesk.id).then(setColumns);
 
     // eslint-disable-next-line
   }, []);
   return (
     <Fragment>
-      <PanelHeaderSimple left={<PanelHeaderBack onClick={goBack} />}>
-        Desk {desk.name}
+      <PanelHeaderSimple left={<PanelHeaderBack onClick={goToDesks} />}>
+        Desk {activeDesk.name}
       </PanelHeaderSimple>
 
       {columns.length ? (
         <Gallery className="Columns__list" slideWidth="90%" align="center">
           {columns.map(({ id, name }) => (
-            <Column key={id} id={id} onDelete={removeColumn}>
+            <Column key={id} id={id}>
               {name}
             </Column>
           ))}
-          <ColumnCreate deskId={desk.id} onCreate={addColumn} />
+          <ColumnCreate deskId={activeDesk.id} onCreate={addColumn} />
         </Gallery>
       ) : (
-        <ColumnCreate deskId={desk.id} onCreate={addColumn} />
+        <ColumnCreate deskId={activeDesk.id} onCreate={addColumn} />
       )}
 
       <Div></Div>
     </Fragment>
   );
 }
-Columns.propTypes = {
-  goBack: PropTypes.func.isRequired,
-  setColumns: PropTypes.func.isRequired,
-  columns: PropTypes.func.isRequired,
-  removeColumn: PropTypes.func.isRequired,
-  addColumn: PropTypes.func.isRequired,
-  desk: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  }),
-};
 
 export default Columns;

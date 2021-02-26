@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import DeskList from "../../components/DeskList/DeskList";
 import DeskCreate from "../../components/DeskCreate/DeskCreate";
 
-function Desks({ onChangePanel }) {
+function Desks() {
   const [desks, setDesks] = useState([]);
   const addDesk = (desk) => setDesks([...desks, desk]);
   const removeDesk = (id) => {
@@ -25,9 +25,5 @@ function Desks({ onChangePanel }) {
     </Fragment>
   );
 }
-
-Desks.propTypes = {
-  onChangePanel: PropTypes.func.isRequired,
-};
 
 export default Desks;

@@ -1,27 +1,24 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useContext } from "react";
 import CreateForm from "../CreateForm/CreateForm";
+import Context from "../App/context";
 
 import { createDesk } from "../../actions";
 
-function DeskCreate({ onCreate }) {
-  const deskCreate = (name) => {
+function DeskCreate() {
+  const { addDesk } = useContext(Context);
+  const createItem = (name) => {
     return createDesk(name)
-      .then((doc) => onCreate({ id: doc.id, ...doc.data() }))
+      .then((doc) => addDesk({ id: doc.id, ...doc.data() }))
       .catch(console.error);
   };
 
   return (
     <CreateForm
-      onSubmit={deskCreate}
+      onSubmit={createItem}
       placeholder="Enter desk name"
       actionTitle="Create desk"
     />
   );
 }
-
-DeskCreate.propTypes = {
-  onCreate: PropTypes.func.isRequired,
-};
 
 export default DeskCreate;

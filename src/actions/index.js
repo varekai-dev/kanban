@@ -81,3 +81,10 @@ export const createCard = (name, columnId) => {
     .add({ name, columnId })
     .then((docRef) => docRef.get());
 };
+
+export const createColumn = (name, deskId) => {
+  return db
+    .collection("columns")
+    .add({ name, deskId })
+    .then((docRef) => docRef.get());
+};

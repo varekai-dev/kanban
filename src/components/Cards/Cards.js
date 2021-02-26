@@ -1,7 +1,6 @@
 import { CardGrid } from "@vkontakte/vkui";
 import React, { useState, useEffect } from "react";
 import ColumnCard from "../ColumnCard/ColumnCard";
-import db from "../../models/firebase";
 import CardCreate from "../CardCreate/CardCreate";
 import PropTypes from "prop-types";
 import { getCards } from "../../actions";
@@ -20,11 +19,12 @@ function Cards({ columnId }) {
   }, []);
   return (
     <CardGrid>
-      {cards.map(({ id, name }) => (
-        <ColumnCard id={id} key={id} onDelete={removeCard}>
-          {name}
-        </ColumnCard>
-      ))}
+      {cards &&
+        cards.map(({ id, name }) => (
+          <ColumnCard id={id} key={id} onDelete={removeCard}>
+            {name}
+          </ColumnCard>
+        ))}
       <CardCreate onCreate={addCard} columnId={columnId} />
     </CardGrid>
   );

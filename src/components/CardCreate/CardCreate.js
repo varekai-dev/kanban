@@ -5,7 +5,7 @@ import { createCard } from "../../actions";
 
 function CardCreate({ onCreate, columnId }) {
   const createItem = (name) => {
-    createCard(name, columnId)
+    return createCard(name, columnId)
       .then((doc) => onCreate({ id: doc.id, ...doc.data() }))
       .catch(console.error);
   };

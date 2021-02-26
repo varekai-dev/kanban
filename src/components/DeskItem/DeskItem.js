@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { Button, Card, Div } from "@vkontakte/vkui";
 import "./DeskItem.css";
-import db from "../../models/firebase";
 import { deleteDesk } from "../../actions";
+import Context from "../App/context";
 
-const DeskItem = ({ children, id, onDelete, onClick }) => {
+const DeskItem = ({ children, id }) => {
+  const { removeDesk, onChangePanel } = useContext(Context);
+  const goToColumnPanel = () => onChangePanel(id);
   const deleteItem = () => {
     deleteDesk(id)
-      .then(() => onDelete(id))
+      .then(() => removeDesk(id))
       .catch(console.error);
   };
   return (
-    <Card size="l" onClick={onClick}>
+    <Card size="l" onClick={goToColumnPanel}>
       <Div className="DeskItem__content">
         {children}
         <Button onClick={deleteItem} mode="destructive">
@@ -25,7 +27,6 @@ const DeskItem = ({ children, id, onDelete, onClick }) => {
 
 DeskItem.propTypes = {
   id: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.node,

@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Div, Card, Header, Button } from "@vkontakte/vkui";
 import "./Column.css";
 import PropTypes from "prop-types";
 import Cards from "../Cards/Cards";
 import { deleteColumn } from "../../actions";
+import Context from "../App/context";
 
-function Column({ children, onDelete, id }) {
+function Column({ children, id }) {
+  const { removeColumn } = useContext(Context);
   const deleteItem = () => {
-    deleteColumn(id).then(onDelete(id)).catch(console.error);
+    deleteColumn(id).then(removeColumn(id)).catch(console.error);
   };
   return (
     <Div className="Column">
@@ -25,7 +27,6 @@ function Column({ children, onDelete, id }) {
 }
 
 Column.propTypes = {
-  onDelete: PropTypes.func.isRequired,
   children: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
 };
