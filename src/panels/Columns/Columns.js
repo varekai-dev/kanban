@@ -8,17 +8,12 @@ import {
 import "./Columns.css";
 import Column from "../../components/Column/Column";
 import ColumnCreate from "../../components/ColumnCreate/ColumnCreate";
-import PropTypes from "prop-types";
 import { getColumns } from "../../actions";
 import Context from "../../components/App/context";
 
 function Columns() {
   const { goToDesks, setColumns, columns, activeDesk } = useContext(Context);
   useEffect(() => {
-    if (!activeDesk) {
-      return;
-    }
-
     getColumns(activeDesk.id).then(setColumns);
 
     // eslint-disable-next-line
@@ -36,10 +31,10 @@ function Columns() {
               {name}
             </Column>
           ))}
-          <ColumnCreate deskId={activeDesk.id} onCreate={addColumn} />
+          <ColumnCreate />
         </Gallery>
       ) : (
-        <ColumnCreate deskId={activeDesk.id} onCreate={addColumn} />
+        <ColumnCreate />
       )}
 
       <Div></Div>

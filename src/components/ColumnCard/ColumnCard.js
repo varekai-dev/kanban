@@ -1,13 +1,15 @@
 import { Button, Card, Div } from "@vkontakte/vkui";
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import "./ColumnCard.css";
 import { deleteCard } from "../../actions";
+import Context from "../App/context";
 
-function ColumnCard({ children, id, onDelete }) {
+function ColumnCard({ children, id }) {
+  const { removeCard } = useContext(Context);
   const deleteItem = () => {
     deleteCard(id)
-      .then(() => onDelete(id))
+      .then(() => removeCard(id))
       .catch(console.error);
   };
   return (

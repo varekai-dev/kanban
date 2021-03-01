@@ -9,7 +9,6 @@ import { useAppState } from "./hooks";
 
 const App = () => {
   const state = useAppState();
-
   return (
     <Context.Provider value={state}>
       <View activePanel={state.activePanel} header={false}>

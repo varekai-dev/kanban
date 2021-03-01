@@ -6,9 +6,10 @@ import { deleteDesk } from "../../actions";
 import Context from "../App/context";
 
 const DeskItem = ({ children, id }) => {
-  const { removeDesk, onChangePanel } = useContext(Context);
-  const goToColumnPanel = () => onChangePanel(id);
-  const deleteItem = () => {
+  const { removeDesk, goToColumns } = useContext(Context);
+  const goToColumnPanel = () => goToColumns(id);
+  const deleteItem = (e) => {
+    e.stopPropagation();
     deleteDesk(id)
       .then(() => removeDesk(id))
       .catch(console.error);
@@ -27,7 +28,6 @@ const DeskItem = ({ children, id }) => {
 
 DeskItem.propTypes = {
   id: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),

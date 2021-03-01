@@ -6,9 +6,7 @@ import Context from "../App/context";
 import { getDesks } from "../../actions";
 
 function DeskList() {
-  const { onChangePanel, setDesks, desks } = useContext(Context);
-  const state = useContext(Context);
-  console.log(state);
+  const { setDesks, desks } = useContext(Context);
   useEffect(() => {
     getDesks().then(setDesks);
     // eslint-disable-next-line
@@ -19,7 +17,7 @@ function DeskList() {
   return (
     <CardGrid>
       {desks.map(({ id, name }) => (
-        <DeskItem onClick={() => onChangePanel(id)} key={id} id={id}>
+        <DeskItem key={id} id={id}>
           {" "}
           {name}
         </DeskItem>

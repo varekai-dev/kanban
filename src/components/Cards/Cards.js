@@ -1,18 +1,13 @@
 import { CardGrid } from "@vkontakte/vkui";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import ColumnCard from "../ColumnCard/ColumnCard";
 import CardCreate from "../CardCreate/CardCreate";
 import PropTypes from "prop-types";
 import { getCards } from "../../actions";
+import Context from "../App/context";
 
 function Cards({ columnId }) {
-  const [cards, setCards] = useState([]);
-  const addCard = (card) => setCards([...cards, card]);
-
-  const removeCard = (id) => {
-    const result = cards.filter((item) => item.id !== id);
-    setCards(result);
-  };
+  const { cards, setCards } = useContext(Context);
   useEffect(() => {
     getCards(columnId).then(setCards);
     // eslint-disable-next-line
@@ -21,11 +16,11 @@ function Cards({ columnId }) {
     <CardGrid>
       {cards &&
         cards.map(({ id, name }) => (
-          <ColumnCard id={id} key={id} onDelete={removeCard}>
+          <ColumnCard id={id} key={id}>
             {name}
           </ColumnCard>
         ))}
-      <CardCreate onCreate={addCard} columnId={columnId} />
+      <CardCreate columnId={columnId} />
     </CardGrid>
   );
 }
