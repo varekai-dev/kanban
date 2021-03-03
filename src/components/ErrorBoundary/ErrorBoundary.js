@@ -22,10 +22,8 @@ export default class ErrorBoundary extends Component {
         <div>
           <h1>Error</h1>
           <button onClick={() => window.location.reload()}>Refresh</button>
-          <button>
-            Show technical informations
-            {this.state.stack}
-          </button>
+          <button>Show technical informations</button>
+          {this.state.stack}
         </div>
       );
     }

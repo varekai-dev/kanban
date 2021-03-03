@@ -1,12 +1,11 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 import { panel } from "./constants";
 
 const useColumnsState = () => {
   const [columns, setColumns] = useState([]);
   const addColumn = (column) => setColumns([...columns, column]);
-  const removeColumn = (removeId) =>
-    setColumns(columns.filter(({ id }) => id !== removeId));
+  const removeColumn = (removeId) => setColumns(columns.filter(({ id }) => id !== removeId));
 
   return { columns, addColumn, removeColumn, setColumns };
 };
@@ -14,8 +13,7 @@ const useColumnsState = () => {
 const useDesksState = () => {
   const [desks, setDesks] = useState([]);
   const addDesk = (desk) => setDesks([...desks, desk]);
-  const removeDesk = (removeId) =>
-    setDesks(desks.filter(({ id }) => id !== removeId));
+  const removeDesk = (removeId) => setDesks(desks.filter(({ id }) => id !== removeId));
 
   return { desks, addDesk, removeDesk, setDesks };
 };
@@ -35,8 +33,7 @@ const useNavState = (desks) => {
 const useCardsState = () => {
   const [cards, setCards] = useState([]);
   const addCard = (card) => setCards([...cards, card]);
-  const removeCard = (removeId) =>
-    setCards(cards.filter(({ id }) => id !== removeId));
+  const removeCard = (removeId) => setCards(cards.filter(({ id }) => id !== removeId));
 
   return { cards, setCards, addCard, removeCard };
 };

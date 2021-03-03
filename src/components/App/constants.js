@@ -1,4 +1,4 @@
 export const panel = {
-  desks: "desks",
-  columns: "columns",
+  desks: 'desks',
+  columns: 'columns',
 };

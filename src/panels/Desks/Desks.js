@@ -1,24 +1,19 @@
-import { PanelHeaderSimple } from "@vkontakte/vkui";
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from 'react';
+import { PanelHeaderSimple, Div } from "@vkontakte/vkui";
+
 import DeskList from "../../components/DeskList/DeskList";
 import DeskCreate from "../../components/DeskCreate/DeskCreate";
 
-function Desks() {
-  const [hasError, setError] = useState(false);
-  const onClick = () => {
-    setError(true);
-  };
-  if (hasError) {
-    throw Error("err");
-  }
+const Desks = () => {
   return (
     <Fragment>
-      <PanelHeaderSimple>My desks</PanelHeaderSimple>
-      <DeskCreate />
+      <PanelHeaderSimple>Мои доски</PanelHeaderSimple>
+
+      <Div><DeskCreate /></Div>
+
       <DeskList />
-      <button onClick={onClick}>click</button>
     </Fragment>
   );
-}
+};
 
 export default Desks;

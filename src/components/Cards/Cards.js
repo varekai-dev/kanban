@@ -1,31 +1,36 @@
-import { CardGrid } from "@vkontakte/vkui";
 import React, { useEffect, useContext } from "react";
+import PropTypes from "prop-types";
+import { CardGrid } from "@vkontakte/vkui";
+
 import ColumnCard from "../ColumnCard/ColumnCard";
 import CardCreate from "../CardCreate/CardCreate";
-import PropTypes from "prop-types";
 import { getCards } from "../../actions";
 import Context from "../App/context";
 
-function Cards({ columnId }) {
+const Cards = ({ columnId }) => {
   const { cards, setCards } = useContext(Context);
+
+  // Запрос в базу данных за карточками
   useEffect(() => {
     getCards(columnId).then(setCards);
-    // eslint-disable-next-line
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <CardGrid>
-      {cards &&
-        cards.map(({ id, name }) => (
-          <ColumnCard id={id} key={id}>
-            {name}
-          </ColumnCard>
-        ))}
+      {cards.map(({ id, name }) => (
+        <ColumnCard key={id} id={id}>
+          {name}
+        </ColumnCard>
+      ))}
+
       <CardCreate columnId={columnId} />
     </CardGrid>
   );
-}
+};
 
 Cards.propTypes = {
   columnId: PropTypes.string.isRequired,
 };
+
 export default Cards;

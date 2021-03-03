@@ -1,20 +1,16 @@
 .Column {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
+
 .Column__wrapper {
-  padding: 16px 0;
-  background-color: #fff;
-  border: 1px solid #000;
-  box-sizing: border-box;
+    padding: 16px 0;
+    background-color: #fff;
+    border: 1px solid #000;
+    box-sizing: border-box;
 }
 
 .Column__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
-.Columns__list {
-  flex-grow: 1;
-  height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
 }

@@ -1,27 +1,28 @@
-import React, { useContext } from "react";
-import CreateForm from "../CreateForm/CreateForm";
-import "../../panels/Columns/Columns.css";
+import React, { useContext } from 'react';
 import { Div } from "@vkontakte/vkui";
+
+import '../Column/Column.css'
+import CreateForm from "../CreateForm/CreateForm";
 import { createColumn } from "../../actions";
 import Context from "../App/context";
 
-function DeskCreate() {
+const ColumnCreate = () => {
   const { addColumn, activeDesk } = useContext(Context);
-  const createItem = (name) => {
-    return createColumn(name, activeDesk.id)
+  const createItem = (name) => (
+    createColumn(name, activeDesk.id)
       .then((doc) => addColumn({ id: doc.id, ...doc.data() }))
-      .catch(console.error);
-  };
+      .catch(console.error)
+  );
 
   return (
     <Div className="Column">
       <CreateForm
         onSubmit={createItem}
-        placeholder="Enter column name"
-        actionTitle="Create column"
+        placeholder="Введите название колонки"
+        actionTitle="Создать колонку"
       />
     </Div>
   );
-}
+};
 
-export default DeskCreate;
+export default ColumnCreate;
